@@ -125,8 +125,9 @@ function configureZones(InitiatorList, TargetList, flogi_wwpn) {
 	}
 }
 function getInitiators() {
-
+	var hosts = new Array();
 	var esx_hosts = input.esxhosts.split(',');
+
 	for (x = 0; x < esx_hosts.length; x++){
 		try {
 			var ESX_hostname = esx_hosts[x].split('@')[1];
@@ -135,18 +136,17 @@ function getInitiators() {
 			var accountName = input.vmacc;
 			var act = InfraPersistenceUtil.getAccount(accountName);
 			var si = new VCenterConnectionManager(act).getServiceInstance();
-			logger.addInfo("Connected Successfully" + si);
-			var host = new (si.getRootFolder()).searchManagedEntity("HostSystem", ESX_hostname);
+			logger.addInfo("Connected Successfully  " + si);
+			var host = new InventoryNavigator(si.getRootFolder()).searchManagedEntity("HostSystem", ESX_hostname );
 			logger.addInfo("Host search " + host );
 			if (host == null) {
 				logger.addError("There is no hosts. Exiting...");
 				ctxt.setFailed("Workflow task failed");
 				return;
 			}
-			logger.addInfo("Retriving hosts from the given cluster");
 			hosts[x] = host;
 		} catch (e) {
-			logger.addError("Exception occured in getHostsInCluster function " + e);
+			logger.addError("Exception occured in getHostsFromESX " + e);
 			ctxt.setFailed("Workflow task failed");
 			throw e;
 			return;
