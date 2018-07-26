@@ -1,0 +1,42 @@
+importPackage(java.util);
+importPackage(java.net);
+importPackage(java.lang);
+importPackage(com.cloupia.feature.networkController.model);
+importPackage(com.cloupia.lib.cIaaS.network.model.ZoneSetInfo);
+importPackage(com.cloupia.lib.cIaaS.network.model);
+importPackage(com.cloupia.feature.networkController.model.NetworkPersistenceUtill);
+
+//var dcName = input.netdevice.split('@')[0];
+//var devIP = input.netdevice.split('@')[1];
+var ZS = input.Zoneset;
+logger.addInfo( "ZS :" +  ZS);
+var ZoneSets = NetworkPersistenceUtil.getAllSanZoneSets();
+logger.addInfo( "ZoneSets :" +  ZoneSets );
+
+for (var i = 0; i < ZoneSets.length; i++) {
+    var ZoneSet = ZoneSets[i];
+    logger.addInfo( "ZoneSet :" +  ZoneSet);
+    var VSANID = ZoneSet.getVsanId();
+    if (ZoneSet)
+	
+	#zo kan je dus gegevens uit de Database lezen maar dat is in dit geval niet nodig :-)
+}
+
+var VSANID = ZoneSet.getVsanId();
+logger.addInfo( "VSAN_ID :" +  VSANID );
+
+output.VSAN_ID = VSANID;
+
+
+
+//var ZoneSets = NetworkPersistenceUtil.getAllDeviceZones(dcName, devIP);
+
+
+
+10.95.121.249;2200;AM3-FP1-ZS02
+
+get_VSANID_from_Zoneset.VSAN_ID
+
+${Zone_name}_${Targetname}
+a_${Zone_Name}_p1	
+a_${Zone_Name}_p2
